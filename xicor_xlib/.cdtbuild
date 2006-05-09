@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?fileVersion 2.1.0?>
+
+<ManagedProjectBuildInfo>
+<project id="xicor_xlib.cdt.managedbuild.target.gnu.so.1667068768" name="Shared Library (Gnu)" projectType="cdt.managedbuild.target.gnu.so">
+<configuration artifactExtension="so" artifactName="xicor_xlib" cleanCommand="rm -rf" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="cdt.managedbuild.config.gnu.so.debug.48838458" name="Debug" parent="cdt.managedbuild.config.gnu.so.debug">
+<toolChain id="cdt.managedbuild.toolchain.gnu.so.debug.453990675" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.so.debug">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.1683702031" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.378181618" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug">
+<option id="gnu.cpp.compiler.option.warnings.pedantic.310413650" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.pedantic.error.25582933" superClass="gnu.cpp.compiler.option.warnings.pedantic.error" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.toerrors.930159850" superClass="gnu.cpp.compiler.option.warnings.toerrors" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.include.paths.2079672367" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="../../xicor_base"/>
+<listOptionValue builtIn="false" value=".."/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1228272185" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.189661634" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
+<option id="gnu.cpp.link.option.libs.301568266" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="xicor_base"/>
+<listOptionValue builtIn="false" value="X11"/>
+</option>
+<option id="gnu.cpp.link.option.paths.1416644056" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="./../../xicor_base/Debug/"/>
+<listOptionValue builtIn="false" value="/usr/X11R6/lib/"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.901446623" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
+</toolChain>
+</configuration>
+<configuration artifactExtension="so" artifactName="xicor_xlib" cleanCommand="rm -rf" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.so.release.165786096" name="Release" parent="cdt.managedbuild.config.gnu.so.release">
+<toolChain id="cdt.managedbuild.toolchain.gnu.so.release.1657164535" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.so.release">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.release.699306260" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.so.release.936068043" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.release">
+<option id="gnu.cpp.compiler.option.include.paths.668869400" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="../../xicor_base"/>
+<listOptionValue builtIn="false" value=".."/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.so.release.510963282" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.release.289596653" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.release">
+<option id="gnu.cpp.link.option.libs.1074929995" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="xicor_base"/>
+<listOptionValue builtIn="false" value="X11"/>
+</option>
+<option id="gnu.cpp.link.option.paths.132831440" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="./../../xicor_base/Release/"/>
+<listOptionValue builtIn="false" value="/usr/X11R6/lib/"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.assembler.so.release.1608966047" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.release"/>
+</toolChain>
+</configuration>
+</project>
+</ManagedProjectBuildInfo>

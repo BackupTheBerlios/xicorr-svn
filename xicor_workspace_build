@@ -1,0 +1,27 @@
+#!/bin/sh
+
+release_target_dir=Release/
+debug_target_dir=Debug/
+target_dir=""
+
+if [ "$1" = "--debug" ]; then
+    target_dir=$debug_target_dir
+else
+    target_dir=$release_target_dir
+fi
+
+cd xicor_base/$target_dir
+make -k
+cd ../..
+cd xicor_xlib/$target_dir
+make -k
+cd ../..
+cd xicor_core/$target_dir
+make -k
+cd ../..
+cd xicor_xsystem/$target_dir
+make -k
+cd ../..
+cd xicor_dict_process/$target_dir
+make -k
+cd ../..

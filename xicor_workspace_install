@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Workspace building..."
+./xicor_workspace_build $1
+echo "Finished building"
+echo "Installing libraries..."
+./xicor_lib_install $1
+echo "Finished installation"
+echo "Plugins installing..."
+./xicor_plugins_home_install $1
+echo "Finished installation"

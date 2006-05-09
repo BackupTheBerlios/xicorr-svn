@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?fileVersion 2.1.0?>
+
+<ManagedProjectBuildInfo>
+<project id="xicor_base.cdt.managedbuild.target.gnu.so.443884037" name="Shared Library (Gnu)" projectType="cdt.managedbuild.target.gnu.so">
+<configuration artifactExtension="so" artifactName="xicor_base" cleanCommand="rm -rf" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.config.gnu.so.debug.2102548011" name="Debug" parent="cdt.managedbuild.config.gnu.so.debug">
+<toolChain id="cdt.managedbuild.toolchain.gnu.so.debug.1170775260" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.so.debug">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.744447971" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.1147638101" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug">
+<option id="gnu.cpp.compiler.option.include.paths.1808476798" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value=".."/>
+</option>
+<option id="gnu.cpp.compiler.option.warnings.pedantic.1992173731" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.pedantic.error.180143581" superClass="gnu.cpp.compiler.option.warnings.pedantic.error" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.toerrors.1162577536" superClass="gnu.cpp.compiler.option.warnings.toerrors" value="true" valueType="boolean"/>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.798278229" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.689861569" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
+<option id="gnu.cpp.link.option.libs.238705217" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="pthread"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.887797397" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
+</toolChain>
+</configuration>
+<configuration artifactExtension="so" artifactName="xicor_base" cleanCommand="rm -rf" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.so.release.1576682807" name="Release" parent="cdt.managedbuild.config.gnu.so.release">
+<toolChain id="cdt.managedbuild.toolchain.gnu.so.release.965202939" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.so.release">
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.release.358207032" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.so.release.907231330" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.release">
+<option id="gnu.cpp.compiler.option.warnings.pedantic.479926563" superClass="gnu.cpp.compiler.option.warnings.pedantic" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.pedantic.error.2012283311" superClass="gnu.cpp.compiler.option.warnings.pedantic.error" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.warnings.toerrors.1506085783" superClass="gnu.cpp.compiler.option.warnings.toerrors" value="true" valueType="boolean"/>
+<option id="gnu.cpp.compiler.option.include.paths.80789413" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value=".."/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.so.release.1554538113" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.release.1260435125" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.release">
+<option id="gnu.cpp.link.option.libs.407858897" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="pthread"/>
+</option>
+<option id="gnu.cpp.link.option.flags.1413681766" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.assembler.so.release.671132063" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.release"/>
+</toolChain>
+</configuration>
+</project>
+</ManagedProjectBuildInfo>

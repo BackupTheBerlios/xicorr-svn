@@ -1,0 +1,24 @@
+PROJECT_NAME	        = XInputCorrector.Base
+PROJECT_NUMBER          = 0.1
+HIDE_UNDOC_MEMBERS      = YES
+HIDE_UNDOC_CLASSES      = YES
+SOURCE_BROWSER          = YES
+RECURSIVE               = YES
+GENERATE_LATEX          = NO
+
+ENABLE_PREPROCESSING    = YES
+MACRO_EXPANSION         = YES
+SEARCH_INCLUDES         = YES
+ALWAYS_DETAILED_SEC     = NO
+CLASS_DIAGRAMS          = YES
+REPEAT_BRIEF		= NO
+
+QUIET			= YES
+WARNINGS		= YES
+HTML_FOOTER		= doxygen-footer
+
+INCLUDE_PATH            = interfaces base
+
+EXCLUDE_PATTERNS        = */Debug/* */Release/* */.metadata/*
+
+

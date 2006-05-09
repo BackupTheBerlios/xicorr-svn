@@ -1,0 +1,14 @@
+#!/bin/sh
+
+release_target_dir=Release/
+debug_target_dir=Debug/
+target_dir=""
+
+if [ "$1" = "--debug" ]; then
+    target_dir=$debug_target_dir
+else
+    target_dir=$release_target_dir
+fi
+
+cp xicor_base/$target_dir/libxicor_base.so xicor_core/$target_dir
+cp xicor_xlib/$target_dir/libxicor_xlib.so xicor_core/$target_dir
