@@ -2,18 +2,18 @@
 #define _PLUGIN_MANAGER_H_
 
 namespace xicor {
-	namespace plugins {
-		class iPlugin;
-		class iSystemPlugin;
-		class iComDataStorage;
-	}
-	namespace thread {
-		class Lock;
-		class WaitCondition;
-	}
-	namespace conf {
-		class iConfiguration;
-	}
+    namespace plugins {
+        class iPlugin;
+        class iSystemPlugin;
+        class iComDataStorage;
+    }
+    namespace thread {
+        class Lock;
+        class WaitCondition;
+    }
+    namespace conf {
+        class iConfiguration;
+    }
 }
 
 #include "bad_plugin_exception.h"
@@ -30,42 +30,42 @@ namespace core {
  * plugin management operations.
  */
 class PluginManager {
-	private:
-		std::string path;
-		xicor::plugins::iSystemPlugin* system_plugin;
-		PluginMonitor* process_plugin_monitor;
-		std::list<xicor::plugins::iPlugin*> process_plugin_list;
-		std::list<void*> library_list;
-	public:
-		PluginManager(std::string _path);
-		virtual ~PluginManager();
+    private:
+        std::string path;
+        xicor::plugins::iSystemPlugin* system_plugin;
+        PluginMonitor* process_plugin_monitor;
+        std::list<xicor::plugins::iPlugin*> process_plugin_list;
+        std::list<void*> library_list;
+    public:
+        PluginManager(std::string _path);
+        virtual ~PluginManager();
 
-		/**
-		 * @brief Verifies and loads plugin(s) by their filename(s).
-		 * @param filenames Contains one or more filenames separated
-		 * by spaces or '\n'
-		 */
-		void loadPlugins(std::string filenames) throw (BadPluginException);
+        /**
+         * @brief Verifies and loads plugin(s) by their filename(s).
+         * @param filenames Contains one or more filenames separated
+         * by spaces or '\n'
+         */
+        void loadPlugins(std::string filenames) throw (BadPluginException);
 
-		/**
-		 * @brief Run init methods of the plugins in order of
-		 *  their loading.
-		 */
-		void initPlugins(xicor::conf::iConfiguration* conf,
-							xicor::plugins::iComDataStorage* comdata)
-												throw (BadPluginException);		
+        /**
+         * @brief Run init methods of the plugins in order of
+         *  their loading.
+         */
+        void initPlugins(xicor::conf::iConfiguration* conf,
+                            xicor::plugins::iComDataStorage* comdata)
+                                                throw (BadPluginException);     
 
-		/**
-		 * @brief Runs plugin working cycle.
-		 */
-		void runSystem() throw (PluginRuntimeException);
+        /**
+         * @brief Runs plugin working cycle.
+         */
+        void runSystem() throw (PluginRuntimeException);
 
-		/**
-		 * @brief Run deinit methods of the plugins in order of
-		 *  their loading.
-		 */
-		void deinitPlugins() const throw ();		
-	
+        /**
+         * @brief Run deinit methods of the plugins in order of
+         *  their loading.
+         */
+        void deinitPlugins() const throw ();        
+    
 };
 
 } //namespace core

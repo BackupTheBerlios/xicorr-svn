@@ -20,6 +20,12 @@ namespace core {
             PluginRuntimeException(std::string str) 
                 :CoreException(str) {}
                 
+            PluginRuntimeException(std::string message, 
+                                std::string fname, 
+                                uint32 lnum)
+                :CoreException(message, fname, lnum)
+            {}
+                
             PluginRuntimeException(const Exception& ex) 
                 :CoreException(ex) {}
     };

@@ -28,7 +28,7 @@ namespace core {
      */
     class Core: public iSerializeable {
         private:
-        	bool exit;
+            bool exit;
             ConfigurationManager* cfg_manager;
             PluginManager* pm_manager;
             xicor::conf::iConfiguration* cfg;

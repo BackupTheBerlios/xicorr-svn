@@ -8,22 +8,22 @@ namespace xicor {
 namespace conf {
     
     class DefaultModeParam: public ParamImpl {
-    	private:
-    		std::string value;
+        private:
+            std::string value;
         public:
             DefaultModeParam(std::string _value) throw (ConfLibraryException)
             {
-            	std::string::operator=("DefaultMode");
-            	if (_value != "Manual" && _value != "Auto")
-		            throw ConfLibraryException(*this + " can't take " + _value);
-		        else
-		            value = _value;
+                std::string::operator=("DefaultMode");
+                if (_value != "Manual" && _value != "Auto")
+                    THROW(ConfLibraryException, *this + " can't take " + _value);
+                else
+                    value = _value;
             }
 
-			void fill(iConfiguration* conf) throw (ConfLibraryException)
-         	{
-         		conf->set<std::string>(*this, value);
-         	}
+            void fill(iConfiguration* conf) throw (ConfLibraryException)
+            {
+                conf->setString(*this, value);
+            }
     };
     
 } //namespace conf

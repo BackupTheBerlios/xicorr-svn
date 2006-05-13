@@ -19,7 +19,7 @@ namespace xicor {
             ELocation location;
             std::string previous;
         protected:
-        	/// Returns "".
+            /// Returns "".
             virtual std::string module() const
             {
                 return "";
@@ -32,21 +32,61 @@ namespace xicor {
             /// Constructor with message param. Exception location is set to default values
             Exception (std::string message);
             /// Constructor with all params.
-            Exception (std::string message, std::string fname, unsigned int lnum);
+            Exception (std::string message, std::string fname, uint32 lnum);
             virtual ~Exception () throw ();
             /// Returns exception message with module name at the beginning
             std::string getMessage () const;
-            /// Returns name of file where exception was thrown
-            std::string getLocationFilename() const;
-            /// Returns number of line in file where exception was thrown
-            unsigned int getLocationLineNumber () const;
+            /// Returns location (fileName, lineNumber) where exception was thrown
+            const ELocation& getLocation() const;
             /// Returns path of modules, exception has passed.
             virtual std::string getModuleName() const;
             
             const char* what() const throw();
 
     };
+    
+    class TypeCastingFailedException: public Exception {
+        public:
+            TypeCastingFailedException ();
+            
+            TypeCastingFailedException (std::string str);
+
+            TypeCastingFailedException (std::string message, 
+                                        std::string fname, 
+                                        uint32 lnum);
+
+            TypeCastingFailedException (const Exception& ex);
+    };
+    
+    class ObjectNotFoundException: public Exception {
+        public:
+            ObjectNotFoundException ();
+            
+            ObjectNotFoundException (std::string str);
+            
+            ObjectNotFoundException (std::string message, 
+                                     std::string fname, 
+                                     uint32 lnum);
+
+            ObjectNotFoundException (const Exception& ex);
+    };
+    
+    class AlreadyExistsException: public Exception {
+        public:
+            AlreadyExistsException ();
+            
+            AlreadyExistsException (std::string str);
+            
+            AlreadyExistsException (std::string message, 
+                                    std::string fname, 
+                                    uint32 lnum);
+
+            AlreadyExistsException (const Exception& ex);
+    };
 
 } //namespace xicor
+
+#define THROW_EMPTY(exception) throw exception("", __FILE__, __LINE__)
+#define THROW(exception, message) throw exception(message, __FILE__, __LINE__)
 
 #endif //_EXCEPTION_IMPL_H_

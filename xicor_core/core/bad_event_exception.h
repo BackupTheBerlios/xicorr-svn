@@ -20,6 +20,12 @@ namespace core {
             BadEventException(std::string str) 
                 :CoreException(str) {}
                 
+            BadEventException(std::string message, 
+                              std::string fname, 
+                              uint32 lnum)
+                :Exception(message, fname, lnum)
+            {}
+                
             BadEventException(const Exception& ex) 
                 :CoreException(ex) {}
     };

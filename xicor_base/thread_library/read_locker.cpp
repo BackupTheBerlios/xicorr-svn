@@ -3,7 +3,7 @@
 
 namespace xicor {
 namespace thread {
-	
+    
     ReadLocker::ReadLocker(RWLock * rwlock):
         _rwlock(rwlock)
     {

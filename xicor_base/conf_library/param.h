@@ -2,9 +2,9 @@
 #define _PARAM_H_
 
 namespace xicor {
-	namespace conf {
-		class iConfiguration;
-	}
+    namespace conf {
+        class iConfiguration;
+    }
 }
 
 #include "destroyable.h"
@@ -22,7 +22,7 @@ namespace conf {
     class iParam: public iDestroyable {
         public:
             virtual void fill(iConfiguration* conf) 
-            							throw (ConfLibraryException) = 0;
+                                        throw (ConfLibraryException) = 0;
     };
     
 } //namespace conf

@@ -20,6 +20,12 @@ namespace conf {
             ConfLibraryException (std::string str)
                 :Exception(str) {}
 
+            ConfLibraryException(std::string message, 
+                                 std::string fname, 
+                                 uint32 lnum)
+                :Exception(message, fname, lnum)
+            {}
+            
             ConfLibraryException (const Exception& ex)
                 :Exception(ex) {}
     };

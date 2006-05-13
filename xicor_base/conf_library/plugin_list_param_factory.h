@@ -11,14 +11,14 @@ namespace conf {
 
 class PluginListParamFactory: public iParamFactory {
     public:
-		iParam* makeParam (std::string param_str) const
-										throw (ConfLibraryException)
-		{
-			if (!meaningful(param_str))
-		        return NULL;
+        iParam* makeParam (const std::string& param_str) const
+                                        throw (ConfLibraryException)
+        {
+            if (!meaningful(param_str))
+                return NULL;
 
-	    	return new PluginNameParam(param_str);
-		}
+            return new PluginNameParam(param_str);
+        }
 };
 
 } //namespace conf

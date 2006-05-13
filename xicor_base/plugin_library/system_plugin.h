@@ -2,12 +2,12 @@
 #define _ISYSTEM_PLUGIN_H_
 
 namespace xicor {
-	namespace plugins {
-		class iComDataStorage;
-	}
-	namespace conf {
-		class iConfiguration;
-	}
+    namespace plugins {
+        class iComDataStorage;
+    }
+    namespace conf {
+        class iConfiguration;
+    }
 }
 
 #include "plugin_result.h"
@@ -36,49 +36,49 @@ namespace plugins {
      * NOTE: Don't delete plugin.
      */
     class iSystemPlugin: public Observable {
-    	protected:
-    		virtual ~iSystemPlugin(){};
+        protected:
+            virtual ~iSystemPlugin(){};
         public:
             /**
-        	 * @brief Init method.
-        	 */
-        	virtual PluginResult init(xicor::conf::iConfiguration* conf,
-        								iComDataStorage* comdata) throw() = 0;
-			/**
-        	 * @brief Deinit method.
-        	 */
-			virtual void deinit() const throw() = 0;
+             * @brief Init method.
+             */
+            virtual PluginResult init(xicor::conf::iConfiguration* conf,
+                                        iComDataStorage* comdata) throw() = 0;
             /**
-        	 * @brief Input stage process method.
-        	 */
-        	virtual void workOnInput() throw(Exception) = 0;
+             * @brief Deinit method.
+             */
+            virtual void deinit() const throw() = 0;
             /**
-        	 * @brief Output stage process method.
-        	 */
-        	virtual void workOnOutput() throw(Exception) = 0;
-        	
-        	void run(void (iSystemPlugin::*work_method)()) throw()
-        	{
-        		try {
-	        		(this->*work_method)();
-        		}
-        		catch (const Exception& ex) {
-        			std::cout << "ERROR: "
-							<< ex.getModuleName() << ": "
-							<< ex.getMessage() << std::endl;
-        		}
-        	}
-        	
-        	void runOnInput() throw ()
-        	{
-        		this->run(& iSystemPlugin::workOnInput);
-        		notifyObservers();
-        	}
-        	
-        	void runOnOutput() throw ()
-        	{
-        		this->run(& iSystemPlugin::workOnOutput);
-        	}
+             * @brief Input stage process method.
+             */
+            virtual void workOnInput() throw(Exception) = 0;
+            /**
+             * @brief Output stage process method.
+             */
+            virtual void workOnOutput() throw(Exception) = 0;
+            
+            void run(void (iSystemPlugin::*work_method)()) throw()
+            {
+                try {
+                    (this->*work_method)();
+                }
+                catch (const Exception& ex) {
+                    std::cout << "ERROR: "
+                            << ex.getModuleName() << ": "
+                            << ex.getMessage() << std::endl;
+                }
+            }
+            
+            void runOnInput() throw ()
+            {
+                this->run(& iSystemPlugin::workOnInput);
+                notifyObservers();
+            }
+            
+            void runOnOutput() throw ()
+            {
+                this->run(& iSystemPlugin::workOnOutput);
+            }
     };
 
 } //namespace plugins
@@ -88,11 +88,11 @@ namespace plugins {
  * @brief Macros that defines system plugin factory function.
  */
 #define SET_FACTORY_FOR_SYSTEM_PLUGIN(plugin_class_name) \
-	extern "C" xicor::plugins::iSystemPlugin* makeSystemPlugin() \
-	{ \
-		xicor::plugins::plugin_class_name * pluginInstance = new xicor::plugins::plugin_class_name(); \
-		return pluginInstance; \
-	}
-//	    static xicor::plugins::plugin_class_name pluginInstance;
+    extern "C" xicor::plugins::iSystemPlugin* makeSystemPlugin() \
+    { \
+        xicor::plugins::plugin_class_name * pluginInstance = new xicor::plugins::plugin_class_name(); \
+        return pluginInstance; \
+    }
+//      static xicor::plugins::plugin_class_name pluginInstance;
 
 #endif //_ISYSTEM_PLUGIN_H_

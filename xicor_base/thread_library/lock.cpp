@@ -38,7 +38,7 @@ namespace thread {
         _impl = impl;
 
         if (pthread_mutex_init(&impl->mutex, lock_attr))
-            throw ThreadLibraryException("pthread_mutex_init returned non-zero");
+            THROW(ThreadLibraryException, "pthread_mutex_init returned non-zero");
     }
 
     Lock::~Lock()
@@ -54,7 +54,7 @@ namespace thread {
         IMPL(impl);
         if (pthread_mutex_lock(&impl->mutex))
         {
-            throw ThreadLibraryException("pthread_mutex_lock returned non-zero");
+            THROW(ThreadLibraryException, "pthread_mutex_lock returned non-zero");
         }
     }
 
@@ -63,7 +63,7 @@ namespace thread {
         IMPL(impl);
         if (pthread_mutex_unlock(&impl->mutex))
         {
-            throw ThreadLibraryException("pthread_mutex_unlock returned non-zero");
+            THROW(ThreadLibraryException, "pthread_mutex_unlock returned non-zero");
         }
     }
 

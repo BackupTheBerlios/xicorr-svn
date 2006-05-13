@@ -8,22 +8,22 @@ namespace xicor {
 namespace conf {
     
     class AppListModeParam: public ParamImpl {
-    	private:
-    		std::string value;
+        private:
+            std::string value;
         public:
             AppListModeParam(std::string _value) throw (ConfLibraryException)
             {
-            	std::string::operator=("AppListMode");
-            	if (_value != "Allow" && _value != "Deny")
-		            throw ConfLibraryException( *this + " can't take " + _value);
-		        else
-		            value = _value;
+                std::string::operator=("AppListMode");
+                if (_value != "Allow" && _value != "Deny")
+                    THROW(ConfLibraryException, *this + " can't take " + _value);
+                else
+                    value = _value;
             }
 
-			void fill(iConfiguration* conf) throw (ConfLibraryException)
-         	{
-         		conf->set<std::string>(*this, value);
-         	}
+            void fill(iConfiguration* conf) throw (ConfLibraryException)
+            {
+                conf->setString(*this, value);
+            }
     };
     
 } //namespace conf

@@ -19,6 +19,12 @@ namespace xlib {
             
             XlibException (std::string str)
                 :Exception(str) {}
+                
+            XlibException(std::string message, 
+                          std::string fname, 
+                          uint32 lnum)
+                :Exception(message, fname, lnum)
+            {}
 
             XlibException (const Exception& ex)
                 :Exception(ex) {}

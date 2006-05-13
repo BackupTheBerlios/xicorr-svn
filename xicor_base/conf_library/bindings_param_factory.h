@@ -9,14 +9,14 @@ namespace conf {
 
 class BindingsParamFactory: public iParamFactory {
     public:
-		iParam* makeParam (std::string param_str) const
-										throw (ConfLibraryException)
-		{
-			if (!meaningful(param_str))
-    	    	return NULL;
-		    
-		    return new BindingParam(param_str);
-		}
+        iParam* makeParam (const std::string& param_str) const
+                                        throw (ConfLibraryException)
+        {
+            if (!meaningful(param_str))
+                return NULL;
+            
+            return new BindingParam(param_str);
+        }
 };
 
 } //namespace conf

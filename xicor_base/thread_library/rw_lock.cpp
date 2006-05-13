@@ -18,7 +18,7 @@ namespace thread {
 
         if (pthread_rwlock_init(&impl->rwlock, NULL))
         {
-            throw ThreadLibraryException("pthread_rwlock_init returned non-zero");
+            THROW(ThreadLibraryException, "pthread_rwlock_init returned non-zero");
         }
     }
 
@@ -35,7 +35,7 @@ namespace thread {
         IMPL(impl);
         if (pthread_rwlock_rdlock(&impl->rwlock))
         {
-            throw ThreadLibraryException("pthread_rwlock_rdlock returned non-zero");
+            THROW(ThreadLibraryException, "pthread_rwlock_rdlock returned non-zero");
         }
     }
 
@@ -44,7 +44,7 @@ namespace thread {
         IMPL(impl);
         if (pthread_rwlock_wrlock(&impl->rwlock))
         {
-            throw ThreadLibraryException("pthread_rwlock_wrlock returned non-zero");
+            THROW(ThreadLibraryException, "pthread_rwlock_wrlock returned non-zero");
         }
     }
 
@@ -69,7 +69,7 @@ namespace thread {
         IMPL(impl);
         if (pthread_rwlock_unlock(&impl->rwlock))
         {
-            throw ThreadLibraryException("pthread_rwlock_unlock returned non-zero");
+            THROW(ThreadLibraryException, "pthread_rwlock_unlock returned non-zero");
         }
    }
 

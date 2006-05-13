@@ -20,6 +20,12 @@ namespace thread {
             ThreadLibraryException (std::string str)
                 :Exception(str) {}
 
+            ThreadLibraryException(std::string message, 
+                                    std::string fname, 
+                                    uint32 lnum)
+                :Exception(message, fname, lnum)
+            {}
+            
             ThreadLibraryException (const Exception& ex)
                 :Exception(ex) {}
     };

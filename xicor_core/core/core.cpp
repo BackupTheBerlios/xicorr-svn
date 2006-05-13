@@ -11,29 +11,20 @@ using namespace xicor::conf;
 
 namespace xicor {
 namespace core {
-
-    static std::string DEFAULT_CONF_DIR_PATH = ".xicor/";
-
-    static const std::string DEFAULT_MAIN_CONF_FILENAME = "xicor.conf";
-    static const std::string DEFAULT_PLUGINS_CONF_FILENAME = "xicor_plugins.list";
-    static const std::string DEFAULT_BINDINGS_CONF_FILENAME = "xicor_bindings.conf";
-
-    static const std::string DEFAULT_DENY_LIST_FILENAME = "xicor_deny.list";
-    static const std::string DEFAULT_ALLOW_LIST_FILENAME = "xicor_allow.list";
     
     Core::Core () throw (CoreException)
-    	:exit(false)
+        :exit(false)
     {
-    	std::vector<std::string> filename_array;
-    	std::string home = getenv("HOME");
-    	DEFAULT_CONF_DIR_PATH = home + "/" + DEFAULT_CONF_DIR_PATH;
-    	
-    	filename_array.push_back(DEFAULT_MAIN_CONF_FILENAME);
-		filename_array.push_back(DEFAULT_PLUGINS_CONF_FILENAME);
-		filename_array.push_back(DEFAULT_BINDINGS_CONF_FILENAME);
-		filename_array.push_back(DEFAULT_DENY_LIST_FILENAME);
-		filename_array.push_back(DEFAULT_ALLOW_LIST_FILENAME);
-    		
+        std::vector<std::string> filename_array;
+        std::string home = getenv("HOME");
+        DEFAULT_CONF_DIR_PATH = home + "/" + DEFAULT_CONF_DIR_PATH;
+        
+        filename_array.push_back(DEFAULT_MAIN_CONF_FILENAME);
+        filename_array.push_back(DEFAULT_PLUGINS_CONF_FILENAME);
+        filename_array.push_back(DEFAULT_BINDINGS_CONF_FILENAME);
+        filename_array.push_back(DEFAULT_DENY_LIST_FILENAME);
+        filename_array.push_back(DEFAULT_ALLOW_LIST_FILENAME);
+            
         cfg_manager = new ConfigurationManager(filename_array);
         pm_manager = new PluginManager(DEFAULT_CONF_DIR_PATH + "plugins/");
         cd_storage = new xicor::plugins::iComDataStorage;
@@ -58,7 +49,7 @@ namespace core {
             
             std::string tmp;
             std::ostringstream plugins(tmp);
-            List<std::string> names = cfg->get< List<std::string> >("PluginName");
+            List<std::string> names = cfg->getStringList("PluginName");
             plugins << names;
             pm_manager->loadPlugins(plugins.str());
             pm_manager->initPlugins(cfg,cd_storage);
@@ -73,17 +64,17 @@ namespace core {
     
     void Core::start () throw (CoreException)
     {
-    	try {
-    		pm_manager->runSystem();
-    	}
-    	catch (Exception& ex) {
-    		throw CoreException(ex);
-    	}
+        try {
+            pm_manager->runSystem();
+        }
+        catch (Exception& ex) {
+            throw CoreException(ex);
+        }
     }
         
     void Core::stop () throw (CoreException)
     {
-    	exit = true;
+        exit = true;
     }
     
     void Core::restart () throw (CoreException)

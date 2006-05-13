@@ -2,9 +2,9 @@
 #define _WAIT_CONDITION_H_
 
 namespace xicor {
-	namespace thread {
-	    class Lock;
-	}
+    namespace thread {
+        class Lock;
+    }
 }
 
 namespace xicor {

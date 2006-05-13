@@ -2,9 +2,9 @@
 #define _XKEY_H_
 
 namespace xicor {
-	namespace xlib {
-		class xEncodingTable;
-	}
+    namespace xlib {
+        class xEncodingTable;
+    }
 }
 
 #include "xlib_exception.h"
@@ -15,45 +15,35 @@ namespace xicor {
 
 namespace xicor {
 namespace xlib {
-	
-	typedef struct _LowLevelKeyInfo {
-		int keycode;
-		long state;
-		_LowLevelKeyInfo()
-			:keycode(0),state(0)
-		{
-		}
-		_LowLevelKeyInfo (int _keycode, long _state)
-			:keycode(_keycode), state(_state)
-		{
-		}
-	} LowLevelKeyInfo;
-	
-	class xKey {
-	private:
-		char latinChar;
-		KeySym key;
-		KeySym modifier;
-		xEncodingTable* encoding_table;
-	public:
-		xKey();
-		xKey(KeySym key);
-		xKey(KeySym key, KeySym modifier) throw(XlibException);
-		
-		bool isChar() throw(XlibException);
-		bool isModified() throw(XlibException);
-		
-		char getChar() throw(XlibException);
-		KeySym getKeysym() throw(XlibException);
-		
-		std::string getModifier() throw(XlibException);
-		
-		friend std::ostream& operator<< (std::ostream& out, xKey& l)
-		{
-			return out;
-		}
-	};
-	
+    
+    class xLatin1Key {
+    private:
+        char latinChar;
+        KeySym key;
+        KeySym modifier;
+        xEncodingTable* encoding_table;
+    protected:
+        void toLowerCaseIfUpper();
+    public:
+        xLatin1Key();
+        xLatin1Key(char latinChar);
+        xLatin1Key(KeySym key, KeySym modifier) throw(XlibException);
+        xLatin1Key(XEvent* event) throw(XlibException);
+        
+        bool isChar() throw(XlibException);
+        bool isModified() throw(XlibException);
+        
+        char getChar() throw(XlibException);
+        KeySym getKeysym() throw(XlibException);
+        
+        KeySym getModifier() throw(XlibException);
+        
+        friend std::ostream& operator<< (std::ostream& out, xLatin1Key& l)
+        {
+            return out;
+        }
+    };
+    
 } //namespace xlib
 } //namespace xicor
 

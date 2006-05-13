@@ -8,8 +8,8 @@ namespace conf {
 
 class MainConfParamFactory: public iParamFactory {
     public:
-       iParam* makeParam (std::string param_str) const
-       								throw (ConfLibraryException);
+       iParam* makeParam (const std::string& param_str) const
+                                    throw (ConfLibraryException);
 };
 
 } //namespace conf

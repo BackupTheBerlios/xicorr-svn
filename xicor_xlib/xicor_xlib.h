@@ -4,17 +4,19 @@
 #include <X11/Xlib.h>
 #include <string>
 
+#include "types.h"
+
 namespace xicor {
 namespace xlib {
 
-	int handleXErrors (Display* xconnection, XErrorEvent * err_event);
+    int32 handleXErrors (Display* xconnection, XErrorEvent * err_event);
 
-	void initLibrary();
-	
-	bool haveLibraryError();
-	
-	std::string getLibraryError();
-	
+    void initLibrary();
+    
+    bool haveLibraryError();
+    
+    std::string getLibraryError();
+    
 } //namespace xlib
 } //namespace xicor
 

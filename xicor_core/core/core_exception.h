@@ -19,6 +19,12 @@ namespace core {
             
             CoreException (std::string str)
                 :Exception(str) {}
+                
+            CoreException(std::string message, 
+                          std::string fname, 
+                          uint32 lnum)
+                :Exception(message, fname, lnum)
+            {}
 
             CoreException (const Exception& ex)
                 :Exception(ex) {}

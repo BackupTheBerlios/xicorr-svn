@@ -5,14 +5,12 @@ namespace xicor {
     
     Exception::Exception ()
     {
-        //TODO
-        location.filename = __FILE__;
-        location.line_num = __LINE__;
+        location.line_num = 0;
     }
     
     Exception::Exception (const Exception& ex)
     {
-        Exception();
+        location = ex.getLocation();
         this->message = ex.getMessage();
         if (!ex.getModuleName().empty())
             this->previous = ex.getModuleName();
@@ -23,12 +21,12 @@ namespace xicor {
     
     Exception::Exception (std::string _message)
     {
-        Exception();
+        location.line_num = 0;
         
         message = _message;
     }
     
-    Exception::Exception (std::string _message, std::string fname, unsigned int lnum)
+    Exception::Exception (std::string _message, std::string fname, uint32 lnum)
     {
         message = _message;
         location.filename = fname;
@@ -44,14 +42,9 @@ namespace xicor {
         return message;
     }
     
-    std::string Exception::getLocationFilename() const
+    const ELocation& Exception::getLocation() const
     {
-        return location.filename;
-    }
-    
-    unsigned int Exception::getLocationLineNumber () const
-    {
-        return location.line_num;
+        return location;
     }
     
     std::string Exception::getModuleName() const
@@ -63,7 +56,70 @@ namespace xicor {
     
     const char* Exception::what() const throw()
     {
-    	return message.c_str();
+        return message.c_str();
+    }
+    
+    TypeCastingFailedException::TypeCastingFailedException () 
+    {
+    }
+            
+    TypeCastingFailedException::TypeCastingFailedException (std::string str)
+        :Exception(str) 
+    {
     }
 
+    TypeCastingFailedException::TypeCastingFailedException(std::string message, 
+                                                            std::string fname, 
+                                                            uint32 lnum)
+        :Exception(message, fname, lnum)
+    {
+    }
+    
+    TypeCastingFailedException::TypeCastingFailedException (const Exception& ex)
+        :Exception(ex) 
+    {
+    }
+
+    ObjectNotFoundException::ObjectNotFoundException () 
+    {
+    }
+            
+    ObjectNotFoundException::ObjectNotFoundException (std::string str)
+        :Exception(str) 
+    {
+    }
+
+    ObjectNotFoundException::ObjectNotFoundException(std::string message, 
+                                                    std::string fname, 
+                                                    uint32 lnum)
+        :Exception(message, fname, lnum)
+    {
+    }
+
+    ObjectNotFoundException::ObjectNotFoundException (const Exception& ex)
+        :Exception(ex) 
+    {
+    }
+    
+    AlreadyExistsException::AlreadyExistsException () 
+    {
+    }
+            
+    AlreadyExistsException::AlreadyExistsException (std::string str)
+        :Exception(str) 
+    {
+    }
+
+    AlreadyExistsException::AlreadyExistsException(std::string message, 
+                                                    std::string fname, 
+                                                    uint32 lnum)
+        :Exception(message, fname, lnum)
+    {
+    }
+    
+    AlreadyExistsException::AlreadyExistsException (const Exception& ex)
+        :Exception(ex) 
+    {
+    }
+    
 } //namespace xicor

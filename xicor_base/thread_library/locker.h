@@ -2,9 +2,9 @@
 #define _LOCKER_H_
 
 namespace xicor {
-	namespace thread {
-		class Lock;
-	}
+    namespace thread {
+        class Lock;
+    }
 }
 
 namespace xicor {
@@ -16,7 +16,7 @@ namespace thread {
     /// Instead of:
     /// <pre>
     /// Lock * lock = new Lock();
-    /// int function()
+    /// int32 function()
     /// {
     ///     lock->lock();
     ///     switch (flag)

@@ -2,9 +2,9 @@
 #define _WRITE_LOCKER_H_
 
 namespace xicor {
-	namespace thread {
-		class RWLock;
-	}
+    namespace thread {
+        class RWLock;
+    }
 }
 
 namespace xicor {

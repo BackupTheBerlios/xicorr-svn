@@ -3,7 +3,7 @@
 
 namespace xicor {
 namespace thread {
-	
+    
     Locker::Locker(Lock * lock):
         _lock(lock)
     {

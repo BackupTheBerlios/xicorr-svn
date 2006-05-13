@@ -7,33 +7,33 @@
 namespace xicor {
 namespace xlib {
 
-	class xFocus {
-	private:
-		Window owner;
-		int focus_policy;
-		bool out;
-	public:
-		xFocus();
-		xFocus(Window owner,int focus_policy, bool out);
-		virtual ~xFocus();
-		
-		Window getOwner() const
-		{
-			return owner;
-		}
-		
-		bool isOut() const
-		{
-			return out;
-		}
-		
-		void updateInput(Display* xconnection) throw(XlibException);
-		
-		friend std::ostream& operator<< (std::ostream& out, xFocus& l)
-		{
-			return out;
-		}
-	};
+    class xFocus {
+    private:
+        Window owner;
+        int32 focus_policy;
+        bool out;
+    public:
+        xFocus();
+        xFocus(Window owner,int32 focus_policy, bool out);
+        virtual ~xFocus();
+        
+        Window getOwner() const
+        {
+            return owner;
+        }
+        
+        bool isOut() const
+        {
+            return out;
+        }
+        
+        void updateInput(Display* xconnection) throw(XlibException);
+        
+        friend std::ostream& operator<< (std::ostream& out, xFocus& l)
+        {
+            return out;
+        }
+    };
 
 } //namespace xlib
 } //namespace xicor

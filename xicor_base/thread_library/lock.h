@@ -2,9 +2,9 @@
 #define _LOCK_H_
 
 namespace xicor {
-	namespace thread {
-	    class WaitCondition;
-	}
+    namespace thread {
+        class WaitCondition;
+    }
 }
 
 namespace xicor {
@@ -16,7 +16,7 @@ namespace thread {
     /// Example:
     /// <pre>
     /// Lock lock;
-    /// int number = 6;
+    /// int32 number = 6;
     ///
     /// void thread1()
     /// {

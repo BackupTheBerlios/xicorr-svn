@@ -2,9 +2,9 @@
 #define _KEYBOARD_OBSERVER_H_
 
 namespace xicor {
-	namespace plugins {
-		class iComDataStorage;
-	}
+    namespace plugins {
+        class iComDataStorage;
+    }
 }
 
 #include "xlib/xevent.h"
@@ -14,22 +14,22 @@ namespace xicor {
 namespace xicor {
 namespace plugins {
 namespace xsystem {
-	
-	typedef Map<int, std::string> KeyBufferMap;
-	class KeyboardObserver: public xicor::xlib::ixEventObserver {
-		private:
-			iComDataStorage* comdata;
-		public:
-			KeyboardObserver();
-			
-			void init (iComDataStorage* const _comdata);
-			
-			void prepare ();
-			
-			void updateObserved (const xicor::xlib::xEvent* const observed)
-													throw (xicor::xlib::XlibException);
-	};
-	
+    
+    typedef Map<int, std::string> KeyBufferMap;
+    class KeyboardObserver: public xicor::xlib::ixEventObserver {
+        private:
+            iComDataStorage* comdata;
+        public:
+            KeyboardObserver();
+            
+            void init (iComDataStorage* const _comdata);
+            
+            void prepare ();
+            
+            void updateObserved (const xicor::xlib::xEvent* const observed)
+                                                    throw (xicor::xlib::XlibException);
+    };
+    
 } //namespace xsystem
 } //namespace plugins
 } //namespace xicor

@@ -21,6 +21,12 @@ namespace core {
             BadPluginException(std::string str) 
                 :CoreException(str) {}
                 
+            BadPluginException(std::string message, 
+                                std::string fname, 
+                                uint32 lnum)
+                :CoreException(message, fname, lnum)
+            {}
+                
             BadPluginException(const Exception& ex) 
                 :CoreException(ex) {}
     };

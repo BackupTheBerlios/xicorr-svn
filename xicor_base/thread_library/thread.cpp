@@ -71,14 +71,14 @@ namespace thread {
         IMPL(impl);
         if (impl->pth)
         {
-            throw ThreadLibraryException("Trying to start thread more than one time");
+            THROW(ThreadLibraryException, "Trying to start thread more than one time");
         }
         impl->is_running = true;
         if (pthread_create(&impl->pth, thread_attr, start_routine, _impl))
         {
             impl->is_running = false;
             impl->pth = 0;
-            throw ThreadLibraryException("pthread_create() returned non-zero");   
+            THROW(ThreadLibraryException, "pthread_create() returned non-zero");   
         }
     }
 

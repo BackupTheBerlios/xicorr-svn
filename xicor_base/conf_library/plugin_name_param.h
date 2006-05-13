@@ -10,31 +10,29 @@ namespace xicor {
 namespace conf {
     
     class PluginNameParam: public ParamImpl {
-    	private:
-    		std::string value;
+        private:
+            std::string value;
         public:
             PluginNameParam(std::string _value) throw (ConfLibraryException)
             {
-            	std::string::operator=("PluginName");
-            	value = _value;
+                std::string::operator=("PluginName");
+                value = _value;
             }
 
-			void fill(iConfiguration* conf) throw (ConfLibraryException)
-         	{
-         		try {
-         			List<std::string> names_list;
-         			try {
-			     		names_list = conf->get<List<std::string> >(*this);
-         			}
-         			catch (Exception& ex) {
-         			}
-		     		names_list.push_back(value);
-		     		conf->set<List<std::string> >(*this, names_list);
-         		}
-         		catch (Exception& ex) {
-         			throw ConfLibraryException(ex);
-         		}
-         	}
+            void fill(iConfiguration* conf) throw (ConfLibraryException)
+            {
+                try {
+                    List<std::string>& names_list = 
+                                    conf->getStringList(*this);
+                    names_list.push_back(value);
+                }
+                catch (const ObjectNotFoundException& ex) {
+                    conf->setStringList(*this, List<std::string>(value));
+                }
+                catch (const Exception& ex) {
+                    throw ConfLibraryException(ex);
+                }
+            }
     };
     
 } //namespace conf

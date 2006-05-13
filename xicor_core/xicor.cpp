@@ -8,7 +8,7 @@ using namespace xicor::core;
 int main (int argc, char** argv)
 {
     try {
-    	Core core;
+        Core core;
         core.init();
         std::cout << "Core initialized" << std::endl;
         core.serialize(std::cout);
@@ -18,6 +18,9 @@ int main (int argc, char** argv)
     catch (const Exception& ex) {
         std::cout   << ex.getModuleName() << ":" << std::endl
                     << ex.getMessage() << std::endl;
+        std::cout   << "Location: " 
+                    << ex.getLocation().filename << " -- "
+                    << ex.getLocation().line_num << std::endl;
     }
     catch (...) {
         std::cout << "Unknown exception" << std::endl;

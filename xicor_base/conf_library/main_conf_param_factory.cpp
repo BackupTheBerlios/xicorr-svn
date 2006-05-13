@@ -8,28 +8,28 @@
 namespace xicor {
 namespace conf {
 
-iParam* MainConfParamFactory::makeParam (std::string param_str) const
-										throw (ConfLibraryException)
+iParam* MainConfParamFactory::makeParam (const std::string& param_str) const
+                                        throw (ConfLibraryException)
 {
-	if (!meaningful(param_str))
+    if (!meaningful(param_str))
         return NULL;
         
     std::istringstream param_stream(param_str);
     std::string name;
     
     param_stream >> name;
-    param_str.erase(0, name.size() + 1);
+    std::string param = param_str.substr(name.size() + 1, param_str.size());
     
     if (name == "DefaultMode")
-        return new DefaultModeParam(param_str);
+        return new DefaultModeParam(param);
     else
     if (name == "AppListMode")
-        return new AppListModeParam(param_str);
+        return new AppListModeParam(param);
     else
     if (name == "VerboseLevel")
-        return new VerboseLevelParam(param_str);
+        return new VerboseLevelParam(param);
         
-    throw ConfLibraryException("Unknown param: " + name);
+    THROW(ConfLibraryException, "Unknown param: " + name);
     
     return NULL;
 }
