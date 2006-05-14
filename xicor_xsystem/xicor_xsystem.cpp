@@ -3,6 +3,7 @@
 #include "xsystem/focus_change_observer.h"
 #include "xsystem/window_manager.h"
 #include "conf_library/configuration.h"
+#include "conf/buffer_action_bindings_param_factory.h"
 
 //TODO: rm
 #include "plugin_library/com_data_storage.h"
@@ -35,6 +36,9 @@ namespace plugins {
                 key_observer = new xsystem::KeyboardObserver;
                 focus_observer = new xsystem::FocusChangeObserver;
                 xclient = new xClient;
+                
+                xicor::conf::iParamFactory::registerParamFactory("buffer_action_bindings.list", 
+                                                            new BufferActionBindingsParamFactory);
             }
             
             ~XicorXSystemPlugin()
@@ -67,10 +71,9 @@ namespace plugins {
                 try {
                     xclient->connect();
                     
+                    std::string mode = conf->getString("AppListMode");
                     win_manager->init(xclient, 
-                                    conf->getString("AppListMode"),
-                                    conf->getStringList("AppName" + 
-                                        conf->getString("AppListMode")) );
+                                    mode, conf->getStringList("AppName" + mode) );
                     key_observer->init(comdata);
                     focus_observer->init(xclient, win_manager, comdata);
                     

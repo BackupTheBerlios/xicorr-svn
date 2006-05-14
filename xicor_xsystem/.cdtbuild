@@ -44,6 +44,7 @@
 <option id="gnu.cpp.link.option.paths.829785927" superClass="gnu.cpp.link.option.paths" valueType="stringList">
 <listOptionValue builtIn="false" value="../../xicor_xlib/Debug"/>
 </option>
+<option id="gnu.cpp.link.option.flags.1646575091" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.1610897170" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
 </toolChain>

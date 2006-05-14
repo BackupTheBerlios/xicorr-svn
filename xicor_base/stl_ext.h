@@ -3,17 +3,36 @@
 
 #include <list>
 #include <map>
+#include <set>
 
 #include "exception.h"
+#include <sstream>
 
 namespace xicor {
 
+    template<class From, class To>
+        To convert (const From& f)
+        {
+            std::string str;
+            To res;
+            std::stringstream convertor(str);
+            convertor << f;
+            convertor >> res;
+            return res;
+        }
+    template<class From>        
+        std::string toString(const From& f)
+        {
+            return convert<From, std::string>(f);
+        }
+        
     template<class Type>
         class List: public std::list<Type> {
             public:
                 List()
                 {
                 }
+                
                 List(const Type& elem)
                 {
                     push_back(elem);
@@ -31,12 +50,35 @@ namespace xicor {
     template<class KeyType, class ValueType>
         class Map: public std::map<KeyType, ValueType> {
             public:
-                ValueType& getValue(const KeyType& key) throw (std::exception,
+                
+                Map()
+                {
+                }
+                
+                Map(const KeyType& key, const ValueType& value)
+                {
+                    (*this)[key] = value;
+                }
+                
+                ValueType& tryKey(const KeyType& key) throw (std::exception,
                                                                 ObjectNotFoundException)
                 {
                     typename Map::iterator itr;
                     if ( (itr = find(key)) == this->end() )
-                        THROW(ObjectNotFoundException, "No such key found");
+                        THROW(ObjectNotFoundException, toString<KeyType>(key) + 
+                                                            ": No such key found");
+                        
+                    return itr->second;
+                }
+                
+                const ValueType& tryKey(const KeyType& key) const 
+                                                         throw (std::exception,
+                                                                ObjectNotFoundException)
+                {
+                    typename Map::const_iterator itr;
+                    if ( (itr = find(key)) == this->end() )
+                        THROW(ObjectNotFoundException, toString<KeyType>(key) + 
+                                                            ": No such key found");
                         
                     return itr->second;
                 }
@@ -45,8 +87,10 @@ namespace xicor {
                                                                 throw ( std::exception,
                                                                         AlreadyExistsException)
                 {
-                    if ( find(key) != this->end() )
-                        THROW(AlreadyExistsException, "element already exist");
+                    if ( std::map<KeyType, ValueType>::find(key) != 
+                                        std::map<KeyType, ValueType>::end() )
+                        THROW(AlreadyExistsException, toString<KeyType>(key) + 
+                                                        ": Element already exist");
                         
                     (*this)[key] = value;
                 }
@@ -60,6 +104,46 @@ namespace xicor {
                 }
         };
     
+    template<class KeyType, class ValueType>
+        class Pair: public std::pair<KeyType, ValueType> {
+            public:
+                Pair()
+                {
+                }
+                
+                Pair(const KeyType& key, const ValueType& value)
+                {
+                    this->first = key;
+                    this->second = value;
+                }
+                
+                friend std::ostream& operator<< (std::ostream& out, const Pair& p)
+                {
+                        out << p.first << ":" << p.second << " ";
+                    return out;
+                }
+        };
+        
+    template<class ValueType>
+        class Set: public std::set<ValueType> {
+            public:
+                Set()
+                {
+                }
+                
+                Set(const ValueType& value)
+                {
+                    this->insert(value);
+                }
+                
+                friend std::ostream& operator<< (std::ostream& out, const Set& s)
+                {
+                    typename Set::iterator itr;
+                    for(itr = s.begin(); itr != s.end(); itr++)
+                        out << *itr << " ";
+                    return out;
+                }
+        };
 } //namespace xicor
 
 #endif //_STL_EXT_H_

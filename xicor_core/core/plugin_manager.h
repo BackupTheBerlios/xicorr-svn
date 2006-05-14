@@ -31,13 +31,12 @@ namespace core {
  */
 class PluginManager {
     private:
-        std::string path;
         xicor::plugins::iSystemPlugin* system_plugin;
         PluginMonitor* process_plugin_monitor;
         std::list<xicor::plugins::iPlugin*> process_plugin_list;
         std::list<void*> library_list;
     public:
-        PluginManager(std::string _path);
+        PluginManager();
         virtual ~PluginManager();
 
         /**

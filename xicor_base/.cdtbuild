@@ -19,6 +19,7 @@
 <option id="gnu.cpp.link.option.libs.238705217" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="pthread"/>
 </option>
+<option id="gnu.cpp.link.option.flags.624726524" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.887797397" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
 </toolChain>

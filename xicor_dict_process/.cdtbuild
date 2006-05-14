@@ -12,7 +12,9 @@
 </option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1930990615" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug"/>
-<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.487197390" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.487197390" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
+<option id="gnu.cpp.link.option.flags.395531107" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
+</tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.1256543725" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
 </toolChain>
 </configuration>

@@ -12,8 +12,8 @@ using namespace xicor::conf;
 namespace xicor {
 namespace core {
 
-    PluginManager::PluginManager(std::string _path)
-        :path(_path), system_plugin(NULL), process_plugin_monitor(NULL)
+    PluginManager::PluginManager()
+        :system_plugin(NULL), process_plugin_monitor(NULL)
     {}
 
     PluginManager::~PluginManager()
@@ -36,7 +36,8 @@ namespace core {
             filenames_stream >> filename;
             if (filename.empty())
                 break;
-            void* lhandler = dlopen((path + filename).c_str(), RTLD_LAZY);
+            void* lhandler = dlopen(filename.c_str(), RTLD_NOW);
+            
             if (lhandler) {
                 library_list.push_back(lhandler);
                 iPlugin* (*PluginFactoryMethod)();
@@ -63,6 +64,9 @@ namespace core {
                 THROW(BadPluginException, "Plugin file " + filename
                                             + " can't be loaded: " + dlerror());
         }
+        
+        if (!system_plugin)
+            THROW(BadPluginException, "Can't work without system plugin");
     }
 
     void PluginManager::initPlugins(

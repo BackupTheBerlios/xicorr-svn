@@ -30,7 +30,7 @@ namespace conf {
                                     throw (ConfLibraryException)
     {
         try {
-            return factories.getValue(filename);
+            return factories.tryKey(filename);
         }
         catch (const ObjectNotFoundException& ex) {
             throw ConfLibraryException(ex);

@@ -12,7 +12,7 @@ namespace conf {
         private:
             std::string value;
         public:
-            AppNameParam(std::string _value, std::string _mode)
+            AppNameParam(const std::string& _value, const std::string& _mode)
                                                     throw (ConfLibraryException)
             {
                 std::string::operator=("AppName" + _mode);

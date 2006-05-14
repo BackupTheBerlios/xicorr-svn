@@ -23,6 +23,7 @@
 <option id="gnu.cpp.link.option.paths.906938406" superClass="gnu.cpp.link.option.paths" valueType="stringList">
 <listOptionValue builtIn="false" value="./../../xicor_base/Debug/"/>
 </option>
+<option id="gnu.cpp.link.option.flags.541887821" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1497377982" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug"/>
 </toolChain>

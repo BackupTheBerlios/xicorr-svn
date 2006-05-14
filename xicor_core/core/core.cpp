@@ -14,21 +14,15 @@ namespace core {
     
     Core::Core () throw (CoreException)
         :exit(false)
-    {
-        std::vector<std::string> filename_array;
-        std::string home = getenv("HOME");
-        DEFAULT_CONF_DIR_PATH = home + "/" + DEFAULT_CONF_DIR_PATH;
-        
-        filename_array.push_back(DEFAULT_MAIN_CONF_FILENAME);
-        filename_array.push_back(DEFAULT_PLUGINS_CONF_FILENAME);
-        filename_array.push_back(DEFAULT_BINDINGS_CONF_FILENAME);
-        filename_array.push_back(DEFAULT_DENY_LIST_FILENAME);
-        filename_array.push_back(DEFAULT_ALLOW_LIST_FILENAME);
-            
-        cfg_manager = new ConfigurationManager(filename_array);
-        pm_manager = new PluginManager(DEFAULT_CONF_DIR_PATH + "plugins/");
+    {       
+        cfg_manager = new ConfigurationManager;
+        pm_manager = new PluginManager;
         cd_storage = new xicor::plugins::iComDataStorage;
         cfg = new ConfigurationImpl;
+        
+        std::string home = getenv("HOME");
+        DEFAULT_CONF_DIR_PATH = home + "/" + DEFAULT_CONF_DIR_PATH;
+        DEFAULT_PLUGIN_CONF_DIR_PATH = home + "/" + DEFAULT_PLUGIN_CONF_DIR_PATH;
     }
     
     Core::~Core ()
@@ -45,13 +39,30 @@ namespace core {
     void Core::init () throw (CoreException)
     {
         try {
-            cfg_manager->loadConfiguration (cfg, DEFAULT_CONF_DIR_PATH);
+            std::string pname_start = "libxicor_";
+            List<std::string> pnames = cfg_manager->getPluginsList(
+                                                DEFAULT_PLUGIN_CONF_DIR_PATH + 
+                                                DEFAULT_PLUGINS_CONF_FILENAME);
+            
+            List<std::string> dirnames(DEFAULT_CONF_DIR_PATH);
+            List<std::string>::iterator pname;
+            for (pname = pnames.begin(); pname != pnames.end(); pname++)
+            {
+                std::string tmp = *pname;
+                tmp.erase(0, 9);
+                tmp.erase(tmp.rfind(".so"), 3);
+                tmp = DEFAULT_PLUGIN_CONF_DIR_PATH + tmp + "/";
+                *pname = tmp + *pname;
+                dirnames.push_back(tmp);
+            }
             
             std::string tmp;
             std::ostringstream plugins(tmp);
-            List<std::string> names = cfg->getStringList("PluginName");
-            plugins << names;
+            plugins << pnames;
             pm_manager->loadPlugins(plugins.str());
+            
+            cfg_manager->loadConfiguration (cfg, dirnames);
+            
             pm_manager->initPlugins(cfg,cd_storage);
         }
         catch (const Exception& ex) {

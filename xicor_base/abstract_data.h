@@ -31,12 +31,12 @@ namespace xicor {
                 
                 void serialize (std::ostream& out) const throw (Exception)
                 {
-                    //TODO: something strange with patterns
+                    //TODO: something strange with templates
                     Type dummy = data;
                     out << dummy;
                 }
         };
 
-} //namespace abstract_data
+} //namespace xicor
 
 #endif //_ABSTRACT_DATA_H_
