@@ -11,7 +11,6 @@ int main (int argc, char** argv)
         Core core;
         core.init();
         std::cout << "Core initialized" << std::endl;
-        core.serialize(std::cout);
         core.start();
         std::cout << "Core stopped" << std::endl;
     }

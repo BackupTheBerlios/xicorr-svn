@@ -14,6 +14,12 @@
 <tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1930990615" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.487197390" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
 <option id="gnu.cpp.link.option.flags.395531107" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
+<option id="gnu.cpp.link.option.libs.1430848757" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="xicor_base"/>
+</option>
+<option id="gnu.cpp.link.option.paths.1952175708" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="./../../xicor_base/Debug"/>
+</option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.so.debug.1256543725" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug"/>
 </toolChain>

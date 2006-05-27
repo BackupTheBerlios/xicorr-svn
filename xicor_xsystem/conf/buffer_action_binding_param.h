@@ -14,32 +14,35 @@ namespace conf {
     
     typedef Set<KeySym> KeySymSet;
     typedef Set<std::string> StringSet;
-    typedef struct __Bind {
-        KeySymSet keys;
-        KeySymSet modifiers;
-        StringSet modes;
-        __Bind()
+    
+    typedef struct Bind {
+        const KeySym key;
+        const KeySym modifier;
+        const std::string mode;
+        Bind()
+            :key(None),modifier(None),mode("")
         {}
-        __Bind(const KeySymSet& _keys, 
-               const KeySymSet& _modifiers, 
-               const StringSet& _modes)
-            :keys(_keys),modifiers(_modifiers),modes(_modes)
+        Bind(const KeySym& _key, 
+             const KeySym& _modifier, 
+             const std::string& _mode)
+            :key(_key),modifier(_modifier),mode(_mode)
         {}
-        bool operator<(const __Bind& b) const
+
+        bool operator<(const Bind& b) const
         {
-            return keys < b.keys &&
-                    modifiers < b.modifiers &&
-                    modes < b.modes;
+            return (key < b.key) ||
+                   (key == b.key && modifier < b.modifier) ||
+                   (key == b.key && modifier == b.modifier && mode < b.mode);
         }
-        friend std::ostream& operator<< (std::ostream& out, __Bind& b)
+        friend std::ostream& operator<< (std::ostream& out, const Bind& b)
         {
-            out << std::endl << b.keys << " " 
-                << b.modifiers << " " 
-                << b.modes << std::endl;
+            out << std::endl << b.key << " " 
+                << b.modifier << " " 
+                << b.mode << std::endl;
             return out;
         }
-    } Bind;
-    typedef Map<std::string, Bind> BindMap;
+    };
+    typedef Map<Bind, std::string> BindMap;
     
     class BufferActionBindingParam: public ParamImpl {
         private:
@@ -51,10 +54,9 @@ namespace conf {
             BufferActionBindingParam(const std::string& _value)
                                        throw (ConfLibraryException)
             {
-                std::string::operator=("BufferActionBinding");
+                std::string::operator=("buffer_action_binding");
                 std::istringstream stream(_value);
-                std::string key, modifier, mode;
-                KeySym key_ks, modifier_ks;
+                std::string key, modifier, mode;;
                     
                 stream >> action;
                 stream >> key;
@@ -65,16 +67,19 @@ namespace conf {
                     action != "ReplaceSymbol" &&
                     action != "DelCurSymbol" &&
                     action != "DelPrevSymbol" &&
-                    action != "ClearBuffer")
+                    action != "ClearWord" &&
+                    action != "ClearBuffer" &&
+                    action != "NavLeft" &&
+                    action != "NavRight")
                     THROW(ConfLibraryException, "Action param can't get " + action);
                 
                 if (key == "AllSymbolic")
                     keys = xicor::xlib::getAllSymbolic();
                 else if (key == "AllUnbinded")
-                    ;
+                    keys.insert(None);
                 else
                     try {  
-                        key_ks = xicor::xlib::stringToKeysym(key);
+                        keys.insert(xicor::xlib::stringToKeysym(key));
                     }
                     catch (const ObjectNotFoundException& ex) {
                         THROW(ConfLibraryException, "Key param can't get " + key);
@@ -88,16 +93,14 @@ namespace conf {
                     modifiers.insert(None);
                 else
                     try {  
-                        modifier_ks = xicor::xlib::stringToKeysym(modifier);
+                        modifiers.insert(xicor::xlib::stringToKeysym(modifier));
                     }
                     catch (const ObjectNotFoundException& ex) {
                         THROW(ConfLibraryException, "Modifier param can't get " + modifier);
                     }
                 
-                if (mode == "InsertMode")
-                    modes.insert("InsertMode");
-                else if (mode == "ReplaceMode")
-                    modes.insert("ReplaceMode");
+                if (mode == "InsertMode" || mode == "ReplaceMode")
+                    modes.insert(mode);
                 else if (mode == "AllModes") {
                     modes.insert("InsertMode");
                     modes.insert("ReplaceMode");
@@ -108,16 +111,29 @@ namespace conf {
 
             void fill(iConfiguration* conf) throw (ConfLibraryException)
             {
-                Bind bind = Bind(keys, modifiers, modes);
-                try {
-                    BindMap& binds = conf->get<BindMap>(*this);
-                    binds[action] = bind;
-                }
-                catch (const ObjectNotFoundException& ex) {
-                    conf->set<BindMap>(*this, BindMap(action, bind));
-                }
-                catch (const Exception& ex) {
-                    throw ConfLibraryException(ex);
+                KeySymSet::iterator key;
+                for (key = keys.begin(); key != keys.end(); key++)
+                {
+                    KeySymSet::iterator modifier;
+                    for (modifier = modifiers.begin(); 
+                        modifier != modifiers.end(); modifier++)
+                    {
+                        StringSet::iterator mode;
+                        for (mode = modes.begin(); mode != modes.end(); mode++)
+                        {
+                            Bind bind(*key, *modifier, *mode);
+                            try {
+                                BindMap& actions = conf->get<BindMap>(*this);
+                                actions[bind] = action;
+                            }
+                            catch (const ObjectNotFoundException& ex) {
+                                conf->set<BindMap>(*this, BindMap(bind, action));
+                            }
+                            catch (const Exception& ex) {
+                                throw ConfLibraryException(ex);
+                            }
+                        }
+                    }
                 }
             }
     };

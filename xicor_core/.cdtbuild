@@ -12,16 +12,19 @@
 <option id="gnu.cpp.compiler.option.warnings.toerrors.469989993" superClass="gnu.cpp.compiler.option.warnings.toerrors" value="true" valueType="boolean"/>
 <option id="gnu.cpp.compiler.option.include.paths.861526874" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="../../xicor_base"/>
+<listOptionValue builtIn="false" value="../../xicor_xlib"/>
 </option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.566077441" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.2127729889" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 <option id="gnu.cpp.link.option.libs.472267404" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="xicor_base"/>
+<listOptionValue builtIn="false" value="xicor_xlib"/>
 <listOptionValue builtIn="false" value="dl"/>
 </option>
 <option id="gnu.cpp.link.option.paths.906938406" superClass="gnu.cpp.link.option.paths" valueType="stringList">
 <listOptionValue builtIn="false" value="./../../xicor_base/Debug/"/>
+<listOptionValue builtIn="false" value="./../../xicor_xlib/Debug"/>
 </option>
 <option id="gnu.cpp.link.option.flags.541887821" superClass="gnu.cpp.link.option.flags" value="-Wl,-E" valueType="string"/>
 </tool>
@@ -43,10 +46,12 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1068373748" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
 <option id="gnu.cpp.link.option.libs.184548878" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="xicor_base"/>
+<listOptionValue builtIn="false" value="xicor_xlib"/>
 <listOptionValue builtIn="false" value="dl"/>
 </option>
 <option id="gnu.cpp.link.option.paths.1138658281" superClass="gnu.cpp.link.option.paths" valueType="stringList">
 <listOptionValue builtIn="false" value="./../../xicor_base/Release/"/>
+<listOptionValue builtIn="false" value="./../../xicor_xlib/Release"/>
 </option>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1655190417" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release"/>

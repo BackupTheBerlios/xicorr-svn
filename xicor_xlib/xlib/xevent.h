@@ -19,13 +19,14 @@ namespace xicor {
 namespace xicor {
 namespace xlib {
     
-    static const long KEYBOARD_EVENT = KeyReleaseMask;
+    static const long KEYBOARD_EVENT = KeyPressMask;
     static const long FOCUS_CHANGE_EVENT = FocusChangeMask;
     
-    class ixEventObserver {
+    class ixEventObserver: public iDestroyable {
         public:
             virtual void updateObserved (const xEvent* const observed) 
-                                                            throw (XlibException) = 0;
+                                                            throw (Exception,
+                                                                XlibException) = 0;
     };
     
     class xEvent {

@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>xicor_base</project>
+		<project>xicor_xlib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

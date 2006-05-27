@@ -52,12 +52,21 @@ namespace plugins {
             PluginResult work() const throw()
             {
                 try {
-                    const std::string& input_string = 
-                            comdata->getString(input_data_key);
-                    if(!input_string.empty())
-                        comdata->setString(output_data_key, input_string);
+                    const std::string& event = 
+                            comdata->getString("current_event");
+                    if (event == "bind") {
+                        const std::string& action = 
+                            comdata->getString("current_binded_action");
+                        std::cout << "dict_process: " << action << std::endl;
+                    }
+                    else if (event == "key") {
+                       const std::string& input_string = 
+                                comdata->getString(input_data_key);
+                        if(!input_string.empty())
+                            comdata->setString(output_data_key, input_string);
+                    }
                 }
-                catch (Exception& ex) {
+                catch (const Exception& ex) {
                     return PluginResult(ex);
                 }
                 

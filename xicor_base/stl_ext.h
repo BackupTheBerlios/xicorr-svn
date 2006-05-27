@@ -136,6 +136,15 @@ namespace xicor {
                     this->insert(value);
                 }
                 
+                bool hasSubset(const Set& sset) const
+                {
+                    typename Set::const_iterator itr;
+                    for(itr = sset.begin(); itr != sset.end(); itr++)
+                        if (this->find(*itr) == this->end())
+                            return false;
+                    return true;
+                }
+                
                 friend std::ostream& operator<< (std::ostream& out, const Set& s)
                 {
                     typename Set::iterator itr;

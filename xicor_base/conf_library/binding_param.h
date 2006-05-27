@@ -4,42 +4,83 @@
 #include "param_impl.h"
 #include "configuration.h"
 
+#include "xlib/utils.h"
+
 #include <sstream>
 
 namespace xicor {
 namespace conf {
     
+    typedef struct BasicBind {
+        KeySym key;
+        KeySym modifier;
+        BasicBind()
+            :key(None),modifier(None)
+        {}
+        BasicBind(const KeySym& _key, 
+                const KeySym& _modifier)
+            :key(_key),modifier(_modifier)
+        {}
+
+        bool operator<(const BasicBind& b) const
+        {
+            return (key < b.key) ||
+                   (key == b.key && modifier < b.modifier);
+        }
+        
+        friend std::ostream& operator<< (std::ostream& out, const BasicBind& b)
+        {
+            out << std::endl << b.key << " " 
+                << b.modifier << std::endl;
+            return out;
+        }
+    };
+    
+    typedef Map<BasicBind, std::string> BasicBindMap;
+    
     class BindingParam: public ParamImpl {
         private:
             std::string action;
-            std::string key;
-            std::string modifier;
+            BasicBind bind;
         public:
             BindingParam(std::string _value) throw (ConfLibraryException)
             {
-                std::string::operator=("BindingParam");
+                std::string::operator=("BindingActions");
                 
                 std::istringstream value_stream(_value);
+                std::string key, modifier;
                 value_stream >> action >> key >> modifier;
                 if (action != "WordChange" && action != "LineChange"
                     && action != "SelectionChange" && action != "ModeSwitch")
                     THROW(ConfLibraryException, "Binding action can't be " + action);
-                if (key != "Pause/Break" && key != "ScrollLock" && key != "PtrScr/SysRq")
-                    THROW(ConfLibraryException, "Binding key can't be " + key);
-                if (modifier != "Ctrl" && modifier != "None")
-                    THROW(ConfLibraryException, "Binding modifier can't be " + modifier);
+                
+                try {  
+                    bind.key = xicor::xlib::stringToKeysym(key);
+                }
+                catch (const ObjectNotFoundException& ex) {
+                    THROW(ConfLibraryException, "Key param can't get " + key);
+                }
+                
+                if (modifier == "None")
+                    bind.modifier = None;
+                else
+                    try {  
+                        bind.modifier = xicor::xlib::stringToKeysym(modifier);
+                    }
+                    catch (const ObjectNotFoundException& ex) {
+                        THROW(ConfLibraryException, "Modifier param can't get " + modifier);
+                    }
             }
             
             void fill(iConfiguration* conf) throw (ConfLibraryException)
             {
-                std::string value = action + " " + key + " " + modifier + " ";
                 try {
-                    List<std::string>& bindings_list = 
-                                    conf->getStringList(*this);
-                    bindings_list.push_back(value);
+                    BasicBindMap& actions = 
+                                    conf->get<BasicBindMap>(*this);
+                    actions[bind] = action;
                 }
                 catch (const ObjectNotFoundException& ex) {
-                    conf->setStringList(*this, List<std::string>(value));
+                    conf->set<BasicBindMap>(*this, BasicBindMap(bind, action));
                 }
                 catch (const Exception& ex) {
                     throw ConfLibraryException(ex);

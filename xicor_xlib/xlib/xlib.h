@@ -46,7 +46,7 @@ namespace xlib {
                                         DEFAULT_XSERVER_ADDRESS )
                                         throw(XlibException) = 0;
             virtual void disconnect() throw(XlibException) = 0;
-            virtual void recieveEvent() throw(XlibException) = 0;
+            virtual void recieveEvent() throw(Exception, XlibException) = 0;
             virtual void setMonitoringOn(Window xwindow, long event_type)
                                                                 throw(XlibException) = 0;
             virtual void setMonitoringOff(Window xwindow) throw(XlibException) = 0;

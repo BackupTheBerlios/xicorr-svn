@@ -5,10 +5,13 @@ namespace xicor {
     namespace plugins {
         class iComDataStorage;
     }
+    namespace conf {
+        class iConfiguration;
+    }
 }
 
 #include "xlib/xevent.h"
-#include "stl_ext.h"
+#include "key_buffer.h"
 #include <string>
 
 namespace xicor {
@@ -19,15 +22,20 @@ namespace xsystem {
     class KeyboardObserver: public xicor::xlib::ixEventObserver {
         private:
             iComDataStorage* comdata;
+            xicor::conf::iConfiguration* conf;
+            KeyBuffer keyBuffer;
+            std::string mode;
         public:
             KeyboardObserver();
             
-            void init (iComDataStorage* const _comdata);
+            void init (iComDataStorage* const _comdata,
+                        xicor::conf::iConfiguration* const _conf);
             
             void prepare ();
             
             void updateObserved (const xicor::xlib::xEvent* const observed)
-                                                    throw (xicor::xlib::XlibException);
+                                                    throw (Exception,
+                                                            xicor::xlib::XlibException);
     };
     
 } //namespace xsystem

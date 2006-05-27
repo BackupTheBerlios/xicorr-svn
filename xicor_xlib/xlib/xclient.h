@@ -29,7 +29,7 @@ namespace xlib {
         void connect(std::string address =
                                     DEFAULT_XSERVER_ADDRESS ) throw(XlibException);
         void disconnect() throw(XlibException);
-        void recieveEvent() throw(XlibException);
+        void recieveEvent() throw(Exception, XlibException);
         void setMonitoringOn(Window xwindow, long event_type) throw(XlibException);
         void setMonitoringOff(Window xwindow) throw(XlibException);
         
@@ -116,7 +116,7 @@ namespace xlib {
         void disconnect() throw(XlibException)
         {}
         
-        void recieveEvent() throw(XlibException)
+        void recieveEvent() throw(Exception, XlibException)
         {
             decorated->recieveEvent();
         }

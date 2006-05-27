@@ -34,7 +34,7 @@ namespace xlib {
         bool isModified() throw(XlibException);
         
         char getChar() throw(XlibException);
-        KeySym getKeysym() throw(XlibException);
+        KeySym getKey() throw(XlibException);
         
         KeySym getModifier() throw(XlibException);
         

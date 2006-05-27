@@ -69,7 +69,7 @@ namespace xlib {
             event.xkey.state = ShiftMask;
         else
             event.xkey.state = 0;
-        event.xkey.keycode = XKeysymToKeycode(event.xkey.display, xkey->getKeysym());
+        event.xkey.keycode = XKeysymToKeycode(event.xkey.display, xkey->getKey());
         event.xkey.time = CurrentTime;
     
         err = XSendEvent (event.xkey.display, event.xkey.window,

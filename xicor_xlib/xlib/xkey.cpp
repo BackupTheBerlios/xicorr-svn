@@ -32,7 +32,7 @@ namespace xlib {
         key = XStringToKeysym(str);
         //TODO: encoding_table is suxx
         if (key == None)
-            encoding_table->getKeysymFromSpecialChar(latinChar);
+            key = encoding_table->getKeysymFromSpecialChar(latinChar);
         
         toLowerCaseIfUpper();
     }
@@ -64,7 +64,7 @@ namespace xlib {
         //get modifiers
         if ((event->xkey.state) & ControlMask)
             modifier = XK_Control_R;
-        else if ((event->xkey.state) & ShiftMask)
+        if ((event->xkey.state) & ShiftMask)
             modifier = XK_Shift_R;
         
         //convert case if needed
@@ -83,7 +83,7 @@ namespace xlib {
             if (strPtr)
                 latinChar = strPtr[0];
             else
-                THROW(XlibException, "Unknown keysym covert error");
+                THROW(XlibException, "Unknown keysym convert error");
         }
         else
             latinChar = encoding_table->getSpecialCharFromKeysym(key);
@@ -106,7 +106,7 @@ namespace xlib {
         return latinChar;
     }
     
-    KeySym xLatin1Key::getKeysym() throw(XlibException)
+    KeySym xLatin1Key::getKey() throw(XlibException)
     {
         return key;
     }

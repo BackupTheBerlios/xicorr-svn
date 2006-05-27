@@ -74,7 +74,7 @@ namespace plugins {
                     std::string mode = conf->getString("AppListMode");
                     win_manager->init(xclient, 
                                     mode, conf->getStringList("AppName" + mode) );
-                    key_observer->init(comdata);
+                    key_observer->init(comdata, conf);
                     focus_observer->init(xclient, win_manager, comdata);
                     
                     xclient->attachEventObserver(key_observer, KEYBOARD_EVENT);
@@ -115,9 +115,8 @@ namespace plugins {
                     //std::cout << comdata->getString("current_event") 
                     //        << " event has been proccessed" << std::endl;
                 }
-                catch (XlibException& ex) {
+                catch (const XlibException& ex) {
 //                  init_needed = true;
-                    throw Exception(ex);
                 }
             }
 
@@ -136,6 +135,7 @@ namespace plugins {
                         xlib::xLatin1Key meankey(str[i]);
                         xclient->getEvent()->send(win_manager->getCurrentWindow(), &meankey);
                     }
+                    std::cout << "xsystem: current output: " << str << std::endl;
                 }
             }
     };

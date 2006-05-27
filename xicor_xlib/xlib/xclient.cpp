@@ -58,7 +58,7 @@ namespace xlib {
         xconnection = NULL;
     }
     
-    void xClient::recieveEvent() throw(XlibException)
+    void xClient::recieveEvent() throw(Exception, XlibException)
     {
         bool recieve_correct = false;
         while (!recieve_correct)
